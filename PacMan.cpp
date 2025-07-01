@@ -143,11 +143,11 @@ void iDraw()
 			move = 0, status = 1;
 		}
 		drawmaze(maze[level]);
-		// playmenu ();
+		playmenu ();
 		
 		pacmove();
 		eat ();
-		// finish();
+		finish();
 
 		if((tim%2)==0)	iShowImage(gr*32+sx,gc*32+sy,"assets/images/blinky.bmp");
 		else iShowImage(gr*32+sx,gc*32+sy,"assets/images/blinky_2.bmp");
@@ -166,7 +166,7 @@ void iDraw()
 	else if (run==10){		//showhighscore
 		iClear();
 		iShowImage(274,82,"assets/images/savedscores.bmp");
-		// showscore();
+		showscore();
 	}
 	else if (run==5){		//show current score
 		iClear();
@@ -503,13 +503,14 @@ void packy ()
 void drawmaze(int maze[17][17])
 {
 	char x[30]="assets/images/block9.bmp";
-
+	// iShowImage(100,100,"assets/images/block9.bmp");
+	
 	for(i=0;i<17;++i)
-		for(j=0;j<17;++j)
+	for(j=0;j<17;++j)
 		{
 			if(maze[i][j]>=7){
 				x[12]=maze[i][j]+'0';
-				iShowImage(p*i+sx,p*j+sy,x);
+				iShowImage(p*i+sx,p*j+sy,"assets/images/block9.bmp");
 			}
 
 			else if(maze[i][j]==0){
@@ -656,8 +657,9 @@ void finish()		//determines the finishing point
 	int s,k;
 	fp=fopen("highscore.txt","r");
 	
-    for (i=0;i<7;i++)
+    for (i=0;i<7;i++) {
         fscanf(fp,"%d\n",&highscore[i]);
+	}
 	fclose(fp);
 
 	if ((life==0)||(level==3)){
@@ -684,6 +686,20 @@ void finish()		//determines the finishing point
 	}
 }
 
+void intoch(int num)		//converts int to char
+{
+	int k=0;
+
+	while(num/10){
+		score[k++]=num%10+48;
+		num/=10;
+	}
+	score[k++]=num+48;
+	score[k]=0;
+
+	strrev(score);
+}
+
 void showscore(void)
 {
 	fp=fopen("highscore.txt","r");
@@ -691,7 +707,7 @@ void showscore(void)
     for (i=0;i<7;i++)
         fscanf(fp,"%d\n",&highscore[i]);
 
-	fclose(fp);	
+	fclose(fp);
 	iSetColor(50,250,50);
 	intoch(highscore[0]);
 	iText(371,450,score,GLUT_BITMAP_TIMES_ROMAN_24);
@@ -707,20 +723,6 @@ void showscore(void)
 	iText(371,200,score,GLUT_BITMAP_TIMES_ROMAN_24);
 	intoch(highscore[6]);
 	iText(371,150,score,GLUT_BITMAP_TIMES_ROMAN_24);
-}
-
-void intoch(int num)		//converts int to char
-{
-	int k=0;
-
-	while(num/10){
-		score[k++]=num%10+48;
-		num/=10;
-	}
-	score[k++]=num+48;
-	score[k]=0;
-
-	strrev(score);
 }
 
 /*
