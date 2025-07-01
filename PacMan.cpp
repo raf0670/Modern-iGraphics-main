@@ -16,6 +16,12 @@ void ghostrun2 ();
 void ghostrun3 ();
 void reset();
 
+const int MAX_NAME_LENGTH=50;
+typedef struct PlayerScore {
+    char name[MAX_NAME_LENGTH];
+    int score;
+} PlayerScore;
+
 FILE *fp;
 
 int maze[5][17][17]={
@@ -73,6 +79,10 @@ int maze[5][17][17]={
 	1,0,0,3,0,0,0,0,0,1,3,0,0,0,1,3,1,
 	1,1,1,1,1,1,0,1,1,1,1,1,1,0,1,1,1 
 };
+
+// PlayerScore highscore[7];
+// char currentPlayerName[MAX_NAME_LENGTH];
+// int nameIndex = 0;
 
 int level=0,life=3,p=32,a,b,c,i,j,sx=1,sy=1, flag1=0,run=0,highscore[20];
 int pr = 1, pc = 1, move = 0,status=1, pause = 0;
