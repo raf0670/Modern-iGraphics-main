@@ -5,7 +5,7 @@ int find (int l,int x);
 void pacmove();
 void packy();
 void intoch(int);
-void playmenu (void);
+void playmenu();
 void ghost();
 int eat ();
 void finish();
@@ -512,14 +512,14 @@ void packy ()
 
 void drawmaze(int maze[17][17])
 {
-	char x[30]="assets/images/block9.bmp";
+	// char x[30]="assets/images/block9.bmp";
 	// iShowImage(100,100,"assets/images/block9.bmp");
 	
 	for(i=0;i<17;++i)
 	for(j=0;j<17;++j)
 		{
 			if(maze[i][j]>=7){
-				x[12]=maze[i][j]+'0';
+				// char x[12]=maze[i][j]+'0';
 				iShowImage(p*i+sx,p*j+sy,"assets/images/block9.bmp");
 			}
 
@@ -530,9 +530,9 @@ void drawmaze(int maze[17][17])
 
 			else if(maze[i][j]==3){
 				if((tim%2)==0)
-					iShowImage(p*i+sx,p*j+sy,"assets/images/sprites/PacMan Foodfood.bmp");
+					iShowImage(p*i+sx,p*j+sy,"assets/images/sprites/PacMan Food/food.bmp");
 				else
-					iShowImage(p*i+sx,p*j+sy,"assets/images/sprites/PacMan Foodfood2.bmp");
+					iShowImage(p*i+sx,p*j+sy,"assets/images/sprites/PacMan Food/food2.bmp");
 			}
 		}
 	iSetColor (255,0,255);
@@ -714,8 +714,9 @@ void showscore(void)
 {
 	fp=fopen("highscore.txt","r");
 	
-    for (i=0;i<7;i++)
+    for(i=0;i<7;i++) {
         fscanf(fp,"%d\n",&highscore[i]);
+	}
 
 	fclose(fp);
 	iSetColor(50,250,50);
