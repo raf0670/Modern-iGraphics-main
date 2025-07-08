@@ -93,6 +93,7 @@ clock_t t1,t2,tim;
 Image frames[2];
 Image ghostsss[2];
 Image block[2];
+Image start;
 
 void loadResources() {
 	iLoadImage(frames, "assets/images/sprites/Pacman/Pac_rgt.bmp");
@@ -105,6 +106,7 @@ void loadResources() {
 	iLoadImage(frames, "assets/images/sprites/Pacman/Pac_dwn_2.bmp");
 	iLoadImage(ghostsss, "assets/images/sprites/Pacman/ghost.bmp");
 	iLoadImage(block, "assets/images/sprites/blocks/block9.bmp");
+	iLoadImage(&start, "assets/images/start.bmp");
 }
 
 void iAnim()
@@ -124,7 +126,9 @@ void iDraw()
 	if (run==0)		//start
 	{
 		iClear();
-		iShowImage(0,0,"assets/images/start.bmp");
+		// iResizeImage(&start, 1100, 100);
+		int scr_ht=1800, scr_wid=600;
+		iShowImage(-235,15, "assets/images/start.bmp", scr_ht, scr_wid);
 	}
 	else if (run==1)		//menu
 	{	
@@ -201,7 +205,7 @@ void iDraw()
 
 void playmenu (void)	//shows score ,level,life
 {
-	iShowImage(720,505,"assets/images/pacman_run.bmp");
+	iShowImage(720,500,"assets/images/pacman_run.bmp");
 	iShowImage(700,20,"assets/images/score.bmp");
 	iSetColor(40,240,120);
 	intoch(highscore[0]);
@@ -535,10 +539,10 @@ void drawmaze(int maze[17][17])
 					iShowImage(p*i+sx,p*j+sy,"assets/images/sprites/PacMan Food/food2.bmp");
 			}
 		}
-	iSetColor (255,0,255);
-	iFilledRectangle (50,620, 256, 50);
-	iSetColor (0,0,0);
-	iText ( 55, 625, "CHANGE THE COLOURS",GLUT_BITMAP_HELVETICA_18);
+	// iSetColor (255,0,255);
+	// iFilledRectangle (50,620, 256, 50);
+	// iSetColor (0,0,0);
+	// iText ( 55, 625, "CHANGE THE COLOURS",GLUT_BITMAP_HELVETICA_18);
 	
 }
 
